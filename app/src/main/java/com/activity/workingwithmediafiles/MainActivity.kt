@@ -1,5 +1,6 @@
 package com.activity.workingwithmediafiles
 
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,11 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val videoBtn = findViewById<Button>(R.id.videoBtn)
+
         val playBtn = findViewById<FloatingActionButton>(R.id.playBtn)
         val pauseBtn = findViewById<FloatingActionButton>(R.id.pauseBtn)
         val stopBtn = findViewById<FloatingActionButton>(R.id.stopBtn)
         seekBar = findViewById(R.id.seekBar)
         handler = Handler(Looper.getMainLooper())
+
         playBtn.setOnClickListener {
             if(medialPlayer == null){
                 medialPlayer = MediaPlayer.create(this,R.raw.applauding)
@@ -46,6 +50,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        videoBtn.setOnClickListener {
+            val intent = Intent(this,VideoView::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initializeSeekBar(){
